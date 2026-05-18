@@ -1,4 +1,4 @@
-package cl.duoc.lmcustomerms.security;
+package cl.duoc.lmsellms.security.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package cl.duoc.lmcartms.dtos;
+package cl.duoc.lmsellms.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

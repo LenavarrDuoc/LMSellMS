@@ -5,15 +5,18 @@ import cl.duoc.lmsellms.models.Descuento;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DescuentoInputDTOMapper {
+public class DescuentoInputMapper {
 
     public Descuento toEntity(DescuentoInputDTO dto){
-        Descuento ent = new Descuento();
+        if (dto != null){
+            Descuento ent = new Descuento();
 
-        ent.setNombre(dto.getNombre());
-        ent.setPorcentajeDcto(dto.getPorcentajeDcto());
-        ent.setFechaExpiracion(dto.getFechaExpiracion());
-        return ent;
+            ent.setNombre(dto.getNombre());
+            ent.setPorcentajeDcto(dto.getPorcentajeDcto());
+            ent.setFechaExpiracion(dto.getFechaExpiracion());
+            return ent;
+        }
+        return null;
 
     }
 }

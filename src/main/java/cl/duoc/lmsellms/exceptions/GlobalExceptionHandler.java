@@ -1,4 +1,4 @@
-package cl.duoc.lmcustomerms.exceptions;
+package cl.duoc.lmsellms.exceptions;
 
 
 import org.springframework.http.ProblemDetail;
@@ -13,6 +13,8 @@ public class GlobalExceptionHandler {
     String title1 = "Error validación de datos."; //para HTTP 400
     String title2 = "Conflicto de datos."; //para HTTP 409
     String title3 = "Objeto no encontrado"; //para HTTP 404
+    String title4 = "Servicio sin respuesta (Bad Gateway)."; //para HTTP 502
+    String title5 = "Error en requisitos de datos."; //para HTTP 422
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handlerValidation(MethodArgumentNotValidException exception){
@@ -26,7 +28,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IdExisteException.class)
-    public ProblemDetail handlerNoExisteID(IdExisteException exception){
+    public ProblemDetail handlerExisteID(IdExisteException exception){
         ProblemDetail problemDetail = ProblemDetail.forStatus(409); //HTTP 409 = conlficto de datos
         problemDetail.setTitle(title2);
         problemDetail.setDetail(exception.getMessage());
@@ -34,60 +36,52 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IdNoExisteException.class)
-    public ProblemDetail handlerNoExisteID(IdNoExisteException exception){
+    public ProblemDetail handlerIdNoExiste(IdNoExisteException exception){
+        ProblemDetail problemDetail = ProblemDetail.forStatus(404); //HTTP 409 = conlficto de datos
+        problemDetail.setTitle(title2);
+        problemDetail.setDetail(exception.getMessage());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(NombreDctoNoExisteException.class)
+    public ProblemDetail handlerNombreDctoNoExisteID(NombreDctoNoExisteException exception){
         ProblemDetail problemDetail = ProblemDetail.forStatus(404); //HTTP 404 = no encontrado
         problemDetail.setTitle(title3);
         problemDetail.setDetail(exception.getMessage());
         return problemDetail;
     }
 
-    @ExceptionHandler(ClienteNumrunExisteException.class)
-    public ProblemDetail handlerDuplicadoNumrun(ClienteNumrunExisteException exception){
-        ProblemDetail problemDetail = ProblemDetail.forStatus(409);
+    @ExceptionHandler(NombreDctoExisteException.class)
+    public ProblemDetail handlerNombreDctoExisteID(NombreDctoExisteException exception) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(409); //HTTP 409 = conlficto de datos
+        problemDetail.setTitle(title2);
+        problemDetail.setDetail(exception.getMessage());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(FecExpNoValidaException.class)
+    public ProblemDetail handlerFecExpNoValida(FecExpNoValidaException exception){
+        ProblemDetail problemDetail = ProblemDetail.forStatus(422); //HTTP 422 = entidad inprocesable.
+        problemDetail.setTitle(title5);
+        problemDetail.setDetail(exception.getMessage());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(FailedAPICallResponseExeption.class)
+    public ProblemDetail handlerFailedAPICallResponse(FailedAPICallResponseExeption exception){
+        ProblemDetail problemDetail = ProblemDetail.forStatus(502); //HTTP 502 = Bad Gateway
+        problemDetail.setTitle(title4);
+        problemDetail.setDetail(exception.getMessage());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(VentaRealizadaException.class)
+    public ProblemDetail handlerVentaRealizada(VentaRealizadaException exception){
+        ProblemDetail problemDetail = ProblemDetail.forStatus(409); //HTTP 409 = conlficto de datos
         problemDetail.setTitle(title2);
         problemDetail.setDetail(exception.getMessage());
         return problemDetail;
     }
 
 
-
-    @ExceptionHandler(DireccionNombreExisteException.class)
-    public ProblemDetail handlerDuplicadoRolNombre(DireccionNombreExisteException exception){
-        ProblemDetail problemDetail = ProblemDetail.forStatus(409);
-        problemDetail.setTitle(title2);
-        problemDetail.setDetail(exception.getMessage());
-        return problemDetail;
-    }
-
-    @ExceptionHandler(ClienteEmailExisteException.class)
-    public ProblemDetail handlerDuplicadoEmail(ClienteEmailExisteException exception ){
-        ProblemDetail problemDetail = ProblemDetail.forStatus(409);
-        problemDetail.setTitle(title2);
-        problemDetail.setDetail(exception.getMessage());
-        return problemDetail;
-    }
-
-    @ExceptionHandler(ClienteFonoNoExisteException.class)
-    public ProblemDetail handlerNoExisteFono(ClienteFonoNoExisteException exception){
-        ProblemDetail problemDetail = ProblemDetail.forStatus(404); //HTTP 404 = no encontrado
-        problemDetail.setTitle(title3);
-        problemDetail.setDetail(exception.getMessage());
-        return problemDetail;
-    }
-
-    @ExceptionHandler(ClienteEmailNoExisteException.class)
-    public ProblemDetail handlerNoExisteFono(ClienteEmailNoExisteException exception){
-        ProblemDetail problemDetail = ProblemDetail.forStatus(404); //HTTP 404 = no encontrado
-        problemDetail.setTitle(title3);
-        problemDetail.setDetail(exception.getMessage());
-        return problemDetail;
-    }
-
-    @ExceptionHandler(ClienteNumrunNoExisteException.class)
-    public ProblemDetail handlerNoExisteNumRun(ClienteNumrunNoExisteException exception){
-        ProblemDetail problemDetail = ProblemDetail.forStatus(404); //HTTP 404 = no encontrado
-        problemDetail.setTitle(title3);
-        problemDetail.setDetail(exception.getMessage());
-        return problemDetail;
-    }
 }

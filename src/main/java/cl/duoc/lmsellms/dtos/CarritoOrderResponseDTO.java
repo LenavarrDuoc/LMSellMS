@@ -1,4 +1,5 @@
-package cl.duoc.lmcartms.dtos;
+package cl.duoc.lmsellms.dtos;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,11 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CarritoOrderResponseDTO {
-
+    private Long id;
     private Long clienteId;
     private String nombreCliente;
     private String runCliente;

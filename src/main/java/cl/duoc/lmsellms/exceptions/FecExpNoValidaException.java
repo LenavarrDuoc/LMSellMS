@@ -1,7 +1,7 @@
 package cl.duoc.lmsellms.exceptions;
 
-public class fecCreacionNoValidaException extends RuntimeException {
-  public fecCreacionNoValidaException(String message) {
-    super(message);
-  }
+public class FecExpNoValidaException extends RuntimeException {
+    public FecExpNoValidaException(String message) {
+        super(message);
+    }
 }

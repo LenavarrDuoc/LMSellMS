@@ -1,7 +1,7 @@
 package cl.duoc.lmsellms.exceptions;
 
-public class IdNoExisteException extends RuntimeException {
-    public IdNoExisteException(String message) {
+public class NombreDctoExisteException extends RuntimeException {
+    public NombreDctoExisteException(String message) {
         super(message);
     }
 }

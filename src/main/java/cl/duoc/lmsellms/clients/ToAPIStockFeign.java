@@ -1,6 +1,6 @@
-package cl.duoc.lmcartms.clients;
+package cl.duoc.lmsellms.clients;
 
-import cl.duoc.lmcartms.dtos.InventarioResponseDTO;
+import cl.duoc.lmsellms.dtos.InventarioResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
